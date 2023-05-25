@@ -25,6 +25,9 @@ FILES = ft_isalpha.c\
 		ft_strdup.c\
 		ft_substr.c\
 		ft_strtrim.c\
+		ft_itoa.c\
+		ft_strmapi.c\
+		ft_striteri.c\
 
 CC = gcc
 RM = rm -f
