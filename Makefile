@@ -32,6 +32,7 @@ FILES = ft_isalpha.c\
 		ft_putsr_fd.c\
 		ft_putstr_fd.c\
 		ft_putnbr_fd.c\
+		ft_split.c\
 
 CC = gcc
 RM = rm -f
