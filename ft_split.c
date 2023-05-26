@@ -6,7 +6,7 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:37:31 by salvalva          #+#    #+#             */
-/*   Updated: 2023/05/26 14:18:56 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:27:53 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	ft_count_word(char const *s, char c)
 {
-	unsigned int i;
-	int			 cont;
+	unsigned int	i;
+	int				cont;
 
 	i = 0;
 	cont = 0;
-	
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 	{
-		while(s[i] == c)
+		while (s[i] == c)
 			i++;
-		if(s[i] != c)
+		if (s[i] != c)
 		{
 			cont++;
 			i++;
@@ -33,43 +32,32 @@ int	ft_count_word(char const *s, char c)
 	return (cont);
 }
 
-char	*ft_strndup(const char *s, size_t n)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char)* n + 1);
-	if (!str)
-		return (NULL);
-	str = ft_strlcpy(str, s, n);
-	str[n] = '\0';
-	return (str);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int		k;
-	int		i;
 	int		j;
 	char	**str;
 
 	i = 0;
 	k = 0;
-	str = (char *)malloc(sizeof(char)*(ft_count_word(s, c) + 1));
+	str = (char *)malloc(sizeof(char) * (ft_count_word(s, c) + 1));
 	if (!str)
 		return (NULL);
-	while(str[i] != '\0')
+	while (*str)
 	{
-		if (str[i] == c)
-			i++;
-		j = i;
-		while(s[i] && s[i] != c)
-			i++;
-		if (i > j)
+		if (*str != c)
 		{
-			str[k] = ft_strndup(s + j, i - j);
-			k++;
+			j = i;
+			while (*s && *s != c)
+			{
+				j++;
+				s++;
+			}
+			*str[k++] = ft_substr(s - i, 0, i);
 		}
-		str[k] = '\0';
-		return (str);
+		else
+			s++;
 	}
+	str[k] = '\0';
+	return (str);
 }

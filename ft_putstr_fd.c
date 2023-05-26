@@ -6,7 +6,7 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:58:01 by salvalva          #+#    #+#             */
-/*   Updated: 2023/05/26 12:06:25 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:18:23 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if ( fd < 0 || !s)
-		return (NULL);
-	while (s[i] != '\0')
+	if (fd < 0 && s)
 	{
-		ft_putchar_fd(s[i], fd);
-		i++;
+		while (s[i] != '\0')
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
 	}
 }

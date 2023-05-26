@@ -6,7 +6,7 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:26:38 by salvalva          #+#    #+#             */
-/*   Updated: 2023/05/26 14:20:23 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:16:50 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 //Se incluyen las librerías que se usen
 # include <ctype.h>
 # include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 //Se incluyen las funciones de la librería
 int		ft_isalpha(int c);
@@ -40,7 +42,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 void	*calloc(size_t nmemb, size_t size);
-char	ft_strdup(const char *s);
+char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
