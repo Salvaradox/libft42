@@ -6,7 +6,7 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:37:31 by salvalva          #+#    #+#             */
-/*   Updated: 2023/05/26 17:27:53 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:35:21 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,29 @@ int	ft_count_word(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
+	int		i;
 	int		k;
 	int		j;
 	char	**str;
 
 	i = 0;
 	k = 0;
-	str = (char *)malloc(sizeof(char) * (ft_count_word(s, c) + 1));
-	if (!str)
+	str = (char **)malloc(sizeof(char *) * (ft_count_word(s, c) + 1));
+	if (!str || !s)
 		return (NULL);
-	while (*str)
+	while (s[i])
 	{
-		if (*str != c)
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[i] && s[i] != c)
+			i++;
+		if (i < j)
 		{
-			j = i;
-			while (*s && *s != c)
-			{
-				j++;
-				s++;
-			}
-			*str[k++] = ft_substr(s - i, 0, i);
+			str[k] = ft_substr(s - i, 0, i);
+			k++;
 		}
-		else
-			s++;
 	}
-	str[k] = '\0';
+	str[k] = NULL;
 	return (str);
 }
