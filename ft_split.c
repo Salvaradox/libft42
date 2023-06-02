@@ -6,13 +6,13 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:37:31 by salvalva          #+#    #+#             */
-/*   Updated: 2023/05/31 18:35:21 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:53:18 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_word(char const *s, char c)
+static int	ft_count_word(char const *s, char c)
 {
 	unsigned int	i;
 	int				cont;
@@ -23,13 +23,45 @@ int	ft_count_word(char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
-		if (s[i] != c)
-		{
+		if (s[i] != '\0')
 			cont++;
+		while (s[i] && (s[i] != c))
+			i++;
+	}
+	return (cont);
+}
+
+char	*ft_strncpy(char *dest, const char *src, unsigned int n)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (i < n && src[i] == '\0')
+	{
+		while (dest[i] != '\0')
+		{
+			dest[i] = '\0';
 			i++;
 		}
 	}
-	return (cont);
+	return (dest);
+}
+
+static char	*ft_strndup(const char *s, size_t n)
+{
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * n + 1);
+	if (!str)
+		return (NULL);
+	str = ft_strncpy(str, s, n);
+	str[n] = '\0';
+	return (str);
 }
 
 char	**ft_split(char const *s, char c)
@@ -42,7 +74,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	k = 0;
 	str = (char **)malloc(sizeof(char *) * (ft_count_word(s, c) + 1));
-	if (!str || !s)
+	if (!str)
 		return (NULL);
 	while (s[i])
 	{
@@ -51,9 +83,9 @@ char	**ft_split(char const *s, char c)
 		j = i;
 		while (s[i] && s[i] != c)
 			i++;
-		if (i < j)
+		if (i > j)
 		{
-			str[k] = ft_substr(s - i, 0, i);
+			str[k] = ft_strndup(s + j, i - j);
 			k++;
 		}
 	}
