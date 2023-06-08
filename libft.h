@@ -6,7 +6,7 @@
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:26:38 by salvalva          #+#    #+#             */
-/*   Updated: 2023/06/08 08:43:13 by salvalva         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:59:29 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 //Se incluyen las funciones de la librería
 int		ft_isalpha(int c);
@@ -54,7 +55,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;

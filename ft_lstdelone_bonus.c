@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 21:19:05 by salvalva          #+#    #+#             */
-/*   Updated: 2023/06/07 21:19:05 by salvalva         ###   ########.fr       */
+/*   Created: 2023/06/08 19:04:42 by salvalva          #+#    #+#             */
+/*   Updated: 2023/06/08 19:04:42 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if(lst != NULL)
+	if (lst)
 	{
 		del(lst->content);
 		free(lst);
