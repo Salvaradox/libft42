@@ -34,10 +34,20 @@ FILES = ft_isalpha.c\
 		ft_putnbr_fd.c\
 		ft_putendl_fd.c\
 		ft_split.c\
+		
+BONUS = ft_lstnew.c\
+		ft_lstadd_front.c\
+		ft_lstsize.c\
+		ft_lstlast.c\
+		ft_lstadd_back.c\
+		ft_lstdelone.c\
+		ft_lstclear.c\
+		ft_lstiter.c\
 
 CC = gcc
 RM = rm -f
 OBJECTS = $(FILES:.c=.o)
+OBJECTSBONUS = $(BONUS: .c=.o)
 CFLAGS = -Werror -Wall -Wextra
 
 #REGLAS GENERALES
@@ -46,8 +56,11 @@ all: $(NAME)
 $(NAME) : $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
+bonus : $(OBJECTS) : $(OBJECTSBONUS)
+			ar rcs $(NAME) $(OBJECTS) $(OBJECTSBONUS)
+
 clean : 
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) $(OBJECTSBONUS)
 # En este caso, clean eliminará todos los archivos object .o
 
 fclean:
