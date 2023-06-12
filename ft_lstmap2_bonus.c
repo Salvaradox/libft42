@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salvalva <salvalva@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 16:16:17 by salvalva          #+#    #+#             */
-/*   Updated: 2023/06/12 16:27:10 by salvalva         ###   ########.fr       */
+/*   Created: 2023/06/08 19:05:17 by salvalva          #+#    #+#             */
+/*   Updated: 2023/06/08 19:05:18 by salvalva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,26 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlst;
-	t_list	*temp;
+	t_list	*save;
 
-	if (!lst || !f || !del)
+	if (!lst || !del || !f)
 		return (NULL);
-	newlst = NULL;
-	while (lst)
+	newlst = ft_lstnew(f(lst->content));
+	if (!newlst)
+		return (NULL);
+	save = newlst;
+	lst = lst->next;
+	while (lst != NULL)
 	{
-		temp = ft_lstnew(f(lst->content));
-		if (!temp)
+		newlst->next = ft_lstnew(f(lst->content));
+		if (!newlst->next)
 		{
-			ft_lstclear(&newlst, del);
+			ft_lstclear(&save, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&newlst, temp);
+		newlst = newlst->next;
 		lst = lst->next;
 	}
-	return (newlst);
+	newlst->next = NULL;
+	return (save);
 }
